@@ -1,7 +1,8 @@
 package main
 
 type Rover struct {
-	x, y int
+	x, y    int
+	heading string
 }
 
 func (r *Rover) Move(cmd string) {
