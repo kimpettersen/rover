@@ -6,7 +6,11 @@ type Rover struct {
 }
 
 func (r *Rover) Move(cmd string) {
-	r.y = r.y + 1
+	if r.heading == "N" {
+		r.y = r.y + 1
+	} else if r.heading == "E" {
+		r.x = r.x + 1
+	}
 }
 
 func main() {
