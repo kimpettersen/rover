@@ -82,3 +82,27 @@ func TestTurnRight(t *testing.T) {
 		assert.Equal(t, rover.heading, "N", "It should head North")
 	})
 }
+
+func TestTurnLeft(t *testing.T) {
+	t.Run("When Facing North", func(t *testing.T) {
+		rover := Rover{0, 0, "N"}
+		rover.Move("L")
+		assert.Equal(t, rover.heading, "W", "It should head West")
+	})
+	t.Run("When Facing West", func(t *testing.T) {
+		rover := Rover{0, 0, "W"}
+		rover.Move("L")
+		assert.Equal(t, rover.heading, "S", "It should head South")
+	})
+	t.Run("When Facing South", func(t *testing.T) {
+		rover := Rover{0, 0, "S"}
+		rover.Move("L")
+		assert.Equal(t, rover.heading, "E", "It should head East")
+	})
+	t.Run("When Facing East", func(t *testing.T) {
+		rover := Rover{0, 0, "E"}
+		rover.Move("L")
+		assert.Equal(t, rover.heading, "N", "It should head North")
+	})
+
+}

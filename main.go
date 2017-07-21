@@ -41,6 +41,18 @@ func (r *Rover) moveRight() {
 	}
 }
 
+func (r *Rover) moveLeft() {
+	if r.heading == "N" {
+		r.heading = "W"
+	} else if r.heading == "W" {
+		r.heading = "S"
+	} else if r.heading == "S" {
+		r.heading = "E"
+	} else if r.heading == "E" {
+		r.heading = "N"
+	}
+}
+
 func (r *Rover) Move(cmd string) {
 	if cmd == "F" {
 		r.moveForwards()
@@ -48,6 +60,8 @@ func (r *Rover) Move(cmd string) {
 		r.moveBackwards()
 	} else if cmd == "R" {
 		r.moveRight()
+	} else if cmd == "L" {
+		r.moveLeft()
 	}
 }
 
