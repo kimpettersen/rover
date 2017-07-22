@@ -1,6 +1,9 @@
 package main
 
-import "strings"
+import (
+	"errors"
+	"strings"
+)
 
 type Rover struct {
 	x, y      int
@@ -92,15 +95,27 @@ func (r *Rover) moveLeft() {
 	}
 }
 
-func parseCmds(cmds string) []string {
+func parseCmds(cmds string) ([]string, error) {
+	validCmds := "FBLR"
 
 	cmds = strings.Replace(cmds, " ", "", -1)
-	return strings.Split(cmds, "")
+	cmds = strings.ToUpper(cmds)
+	cmdsSLice := strings.Split(cmds, "")
+
+	for _, cmd := range cmdsSLice {
+		if strings.Contains(validCmds, cmd) != true {
+			return nil, errors.New("Invalid Command")
+		}
+	}
+
+	return cmdsSLice, nil
 }
 
-func (r *Rover) Move(cmds string) {
-	cmdsSlice := parseCmds(cmds)
-
+func (r *Rover) Move(cmds string) error {
+	cmdsSlice, err := parseCmds(cmds)
+	if err != nil {
+		return err
+	}
 	for _, cmd := range cmdsSlice {
 		if cmd == "F" {
 			r.moveForwards()
@@ -112,6 +127,7 @@ func (r *Rover) Move(cmds string) {
 			r.moveLeft()
 		}
 	}
+	return nil
 }
 
 func main() {
