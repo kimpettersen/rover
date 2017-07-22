@@ -1,8 +1,13 @@
 package main
 
 type Rover struct {
-	x, y    int
-	heading string
+	x, y      int
+	heading   string
+	planetMap PlanetMap
+}
+
+type PlanetMap struct {
+	xMax, yMax int
 }
 
 func (r *Rover) moveBackwards() {
@@ -19,13 +24,29 @@ func (r *Rover) moveBackwards() {
 
 func (r *Rover) moveForwards() {
 	if r.heading == "N" {
-		r.y = r.y + 1
+		if r.y >= r.planetMap.yMax {
+			r.y = 0
+		} else {
+			r.y = r.y + 1
+		}
 	} else if r.heading == "E" {
-		r.x = r.x + 1
+		if r.x >= r.planetMap.xMax {
+			r.x = 0
+		} else {
+			r.x = r.x + 1
+		}
 	} else if r.heading == "S" {
-		r.y = r.y - 1
+		if r.y <= 0 {
+			r.y = r.planetMap.yMax
+		} else {
+			r.y = r.y - 1
+		}
 	} else if r.heading == "W" {
-		r.x = r.x - 1
+		if r.x <= 0 {
+			r.x = r.planetMap.xMax
+		} else {
+			r.x = r.x - 1
+		}
 	}
 }
 
