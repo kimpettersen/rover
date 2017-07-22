@@ -1,5 +1,7 @@
 package main
 
+import "strings"
+
 type Rover struct {
 	x, y      int
 	heading   string
@@ -90,15 +92,25 @@ func (r *Rover) moveLeft() {
 	}
 }
 
-func (r *Rover) Move(cmd string) {
-	if cmd == "F" {
-		r.moveForwards()
-	} else if cmd == "B" {
-		r.moveBackwards()
-	} else if cmd == "R" {
-		r.moveRight()
-	} else if cmd == "L" {
-		r.moveLeft()
+func parseCmds(cmds string) []string {
+
+	cmds = strings.Replace(cmds, " ", "", -1)
+	return strings.Split(cmds, "")
+}
+
+func (r *Rover) Move(cmds string) {
+	cmdsSlice := parseCmds(cmds)
+
+	for _, cmd := range cmdsSlice {
+		if cmd == "F" {
+			r.moveForwards()
+		} else if cmd == "B" {
+			r.moveBackwards()
+		} else if cmd == "R" {
+			r.moveRight()
+		} else if cmd == "L" {
+			r.moveLeft()
+		}
 	}
 }
 

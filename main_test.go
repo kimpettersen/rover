@@ -165,3 +165,28 @@ func TestGridWrapping(t *testing.T) {
 		assert.Equal(t, 0, rover.x, "It should wrap the grid")
 	})
 }
+
+func TestMoveRoverAround(t *testing.T) {
+	pluto := PlanetMap{4, 3}
+	t.Run("When moving rover from (1,1, N) to (2,2, E)", func(t *testing.T) {
+		rover := Rover{1, 1, "N", pluto}
+		rover.Move("RFLFR")
+		assert.Equal(t, 2, rover.x, "It should be at x=2")
+		assert.Equal(t, 2, rover.y, "It should be at y=2")
+		assert.Equal(t, "E", rover.heading, "It should be heading E")
+	})
+	t.Run("When moving rover from (1,1, N) to (4,2, N) when grid is wrapped x Direction", func(t *testing.T) {
+		rover := Rover{1, 1, "N", pluto}
+		rover.Move("LFFRF")
+		assert.Equal(t, 4, rover.x, "It should be at x=4")
+		assert.Equal(t, 2, rover.y, "It should be at y=2")
+		assert.Equal(t, "N", rover.heading, "It should be heading N")
+	})
+	t.Run("When moving rover from (1,1, N) to (3,1, W) when grid is wrapped y Direction", func(t *testing.T) {
+		rover := Rover{1, 1, "N", pluto}
+		rover.Move("BBL")
+		assert.Equal(t, 1, rover.x, "It should be at x=1")
+		assert.Equal(t, 3, rover.y, "It should be at y=3")
+		assert.Equal(t, "W", rover.heading, "It should be heading W")
+	})
+}
