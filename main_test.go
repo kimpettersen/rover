@@ -144,4 +144,24 @@ func TestGridWrapping(t *testing.T) {
 		rover.Move("F")
 		assert.Equal(t, rover.x, 10, "It should wrap the grid")
 	})
+	t.Run("When Facing North And Moving Backwards", func(t *testing.T) {
+		rover := Rover{0, 0, "N", pluto}
+		rover.Move("B")
+		assert.Equal(t, rover.y, 5, "It should wrap the grid")
+	})
+	t.Run("When Facing East And Moving Backwards", func(t *testing.T) {
+		rover := Rover{0, 0, "E", pluto}
+		rover.Move("B")
+		assert.Equal(t, rover.x, 10, "It should wrap the grid")
+	})
+	t.Run("When Facing South And Moving Backwards", func(t *testing.T) {
+		rover := Rover{0, 5, "S", pluto}
+		rover.Move("B")
+		assert.Equal(t, rover.y, 0, "It should wrap the grid")
+	})
+	t.Run("When Facing West And Moving Backwards", func(t *testing.T) {
+		rover := Rover{10, 0, "W", pluto}
+		rover.Move("B")
+		assert.Equal(t, rover.x, 0, "It should wrap the grid")
+	})
 }
