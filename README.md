@@ -4,5 +4,5 @@ Package contains a Rover that can drive around a PlanetMap and detect obstacles 
 
 # Dependencies
 
-`go get -u github.com/golang/dep/cmd/dep`
-`dep ensure`
+- Install dep: `go get -u github.com/golang/dep/cmd/dep`
+- Run: `dep ensure`
