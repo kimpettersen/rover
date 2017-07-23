@@ -1,4 +1,4 @@
-package main
+package rover
 
 import (
 	"errors"
@@ -179,8 +179,4 @@ func (r *Rover) Move(cmds string) error {
 		}
 	}
 	return nil
-}
-
-func main() {
-
 }
