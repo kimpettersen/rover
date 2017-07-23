@@ -8,28 +8,32 @@ import (
 
 func TestMovingForward(t *testing.T) {
 	t.Run("When Facing North", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "N", pluto}
 		_ = rover.Move("F")
 		assert.Equal(t, 1, rover.y, "it should move one step up the y-axis")
 		assert.Equal(t, 0, rover.x, "it should stay in the same position on x-axis")
 	})
 	t.Run("When Facing East", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "E", pluto}
 		_ = rover.Move("F")
 		assert.Equal(t, 0, rover.y, "it should stay in the same position on y-axis")
 		assert.Equal(t, 1, rover.x, "it should move one step up the x-axis")
 	})
 	t.Run("When Facing South", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{1, 1, "S", pluto}
 		_ = rover.Move("F")
 		assert.Equal(t, 0, rover.y, "it should move one step down the y-axis")
 		assert.Equal(t, 1, rover.x, "it should move one step on the x-axis")
 	})
 	t.Run("When Facing West", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{1, 1, "W", pluto}
 		_ = rover.Move("F")
 		assert.Equal(t, 1, rover.y, "it should move one step on the y-axis")
@@ -39,28 +43,32 @@ func TestMovingForward(t *testing.T) {
 
 func TestMovingBackward(t *testing.T) {
 	t.Run("When Facing North", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{1, 1, "N", pluto}
 		_ = rover.Move("B")
 		assert.Equal(t, 0, rover.y, "it should move one step down the y-axis")
 		assert.Equal(t, 1, rover.x, "it should stay in the same position on x-axis")
 	})
 	t.Run("When Facing East", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{1, 1, "E", pluto}
 		_ = rover.Move("B")
 		assert.Equal(t, 1, rover.y, "it should stay in the same position on y-axis")
 		assert.Equal(t, 0, rover.x, "it should move one step down the x-axis")
 	})
 	t.Run("When Facing South", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "S", pluto}
 		_ = rover.Move("B")
 		assert.Equal(t, 1, rover.y, "it should move one step up the y-axis")
 		assert.Equal(t, 0, rover.x, "it should stay in the same position on y-axis")
 	})
 	t.Run("When Facing West", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "W", pluto}
 		_ = rover.Move("B")
 		assert.Equal(t, 0, rover.y, "it should stay in the same position on y-axis")
@@ -70,25 +78,29 @@ func TestMovingBackward(t *testing.T) {
 
 func TestTurnRight(t *testing.T) {
 	t.Run("When Facing North", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "N", pluto}
 		_ = rover.Move("R")
 		assert.Equal(t, "E", rover.heading, "It should head East")
 	})
 	t.Run("When Facing East", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "E", pluto}
 		_ = rover.Move("R")
 		assert.Equal(t, "S", rover.heading, "It should head South")
 	})
 	t.Run("When Facing South", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "S", pluto}
 		_ = rover.Move("R")
 		assert.Equal(t, "W", rover.heading, "It should head West")
 	})
 	t.Run("When Facing West", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "W", pluto}
 		_ = rover.Move("R")
 		assert.Equal(t, "N", rover.heading, "It should head North")
@@ -97,25 +109,29 @@ func TestTurnRight(t *testing.T) {
 
 func TestTurnLeft(t *testing.T) {
 	t.Run("When Facing North", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "N", pluto}
 		_ = rover.Move("L")
 		assert.Equal(t, "W", rover.heading, "It should head West")
 	})
 	t.Run("When Facing West", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "W", pluto}
 		_ = rover.Move("L")
 		assert.Equal(t, "S", rover.heading, "It should head South")
 	})
 	t.Run("When Facing South", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "S", pluto}
 		_ = rover.Move("L")
 		assert.Equal(t, "E", rover.heading, "It should head East")
 	})
 	t.Run("When Facing East", func(t *testing.T) {
-		pluto := PlanetMap{10, 5}
+		var obs []Obstacle
+		pluto := PlanetMap{10, 5, obs}
 		rover := Rover{0, 0, "E", pluto}
 		_ = rover.Move("L")
 		assert.Equal(t, "N", rover.heading, "It should head North")
@@ -123,7 +139,8 @@ func TestTurnLeft(t *testing.T) {
 }
 
 func TestGridWrapping(t *testing.T) {
-	pluto := PlanetMap{10, 5}
+	var obs []Obstacle
+	pluto := PlanetMap{10, 5, obs}
 	t.Run("When Facing North And Moving Forwards", func(t *testing.T) {
 		rover := Rover{0, 5, "N", pluto}
 		_ = rover.Move("F")
@@ -167,7 +184,8 @@ func TestGridWrapping(t *testing.T) {
 }
 
 func TestMoveRoverAround(t *testing.T) {
-	pluto := PlanetMap{4, 3}
+	var obs []Obstacle
+	pluto := PlanetMap{4, 3, obs}
 	t.Run("When moving rover from (1,1, N) to (2,2, E)", func(t *testing.T) {
 		rover := Rover{1, 1, "N", pluto}
 		_ = rover.Move("RFLFR")
@@ -192,7 +210,8 @@ func TestMoveRoverAround(t *testing.T) {
 }
 
 func TestCommandParsing(t *testing.T) {
-	pluto := PlanetMap{4, 3}
+	var obs []Obstacle
+	pluto := PlanetMap{4, 3, obs}
 	t.Run("When passing lower case commands", func(t *testing.T) {
 		rover := Rover{1, 1, "E", pluto}
 		err := rover.Move("f")
@@ -208,5 +227,27 @@ func TestCommandParsing(t *testing.T) {
 		rover := Rover{1, 1, "E", pluto}
 		_ = rover.Move("F F")
 		assert.Equal(t, 3, rover.x, "It should be x=3")
+	})
+}
+
+func TestObstacles(t *testing.T) {
+	obstacles := []Obstacle{
+		Obstacle{1, 3},
+		Obstacle{3, 1},
+	}
+
+	pluto := PlanetMap{4, 4, obstacles}
+
+	t.Run("When there's an obstacle on Y", func(t *testing.T) {
+		rover := Rover{1, 1, "N", pluto}
+		err := rover.Move("FF")
+		assert.Equal(t, 2, rover.y, "It should stay on y=2")
+		assert.EqualError(t, err, "Obstacle found. Rover will stay at (1,2,N)")
+	})
+	t.Run("When there's an obstacle on X", func(t *testing.T) {
+		rover := Rover{1, 1, "E", pluto}
+		err := rover.Move("FF")
+		assert.Equal(t, 2, rover.x, "It should stay on x=2")
+		assert.EqualError(t, err, "Obstacle found. Rover will stay at (2,1,E)")
 	})
 }
